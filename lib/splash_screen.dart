@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:cat_dog_identifier/core/constants/app_assets.dart';
 import 'package:cat_dog_identifier/core/navigation/route_names.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
 
 class MySplashScreen extends StatefulWidget {
   @override
@@ -9,23 +10,49 @@ class MySplashScreen extends StatefulWidget {
 }
 
 class _MySplashScreenState extends State<MySplashScreen> {
+  void navigateAfterDelay() {
+    Timer(
+      Duration(seconds: 3),
+      () {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          Routes.homePage,
+          (route) => false,
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    navigateAfterDelay();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SplashScreen(
-      seconds: 2,
-      routeName: Routes.homePage,
-      image: Image.asset(
-        AppAsset.dogCatIcon,
-      ),
+    return Scaffold(
       backgroundColor: Colors.blueAccent,
-      photoSize: 60,
-      loaderColor: Color(0x004242),
-      title: Text(
-        'Cat and Dog Classifier',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 25,
-          color: Color(0x00FFFF),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                AppAsset.dogCatIcon,
+              ),
+              Text(
+                'Cat and Dog Classifier'.toUpperCase(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                  color: Colors.white70,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,14 +1,14 @@
 import 'package:cat_dog_identifier/core/navigation/route_names.dart';
 import 'package:cat_dog_identifier/features/classifier/presentation/pages/home_page.dart';
+import 'package:cat_dog_identifier/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case Routes.splashScreen:
       return _getPageRoute(
         routeName: settings.name,
-        viewToShow: SplashScreen(),
+        viewToShow: MySplashScreen(),
       );
     case Routes.homePage:
       return _getPageRoute(
